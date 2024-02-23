@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId // 每个model都需要这一行，因为mongodb的model一定需要定义id
+  name String
+  image String? // ?表示可选，可要可不要
+  email String? @unique // 非必须，可能用到oauth login
+  emailVerified DateTime?
+  hashedPassword String? // 密码登录所需要
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt // 自动更新 更新时间
+  favoriteIds String[] @db.ObjectId // 用户最喜欢的电影
+  sessions Session[]
+  accounts Account[]
+}
+
+// 用于Google Account或者GitHub Account
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId // account和userid之间的关系
+  type String
+  provider String
+  providerAccountId String
+  refresh_token String? @db.String
+  access_token String? @db.String
+  expires_at Int?
+  token_type String?
+  scope String?
+  id_token String? @db.String
+  session_state String?
+
+  // 将account model和user model之间通过userId连接, onDelate表示二者的删除是同步的(user被删除了，account也被删除)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId]) // 独一无二，不允许重复
+}
+
+model Session {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String @unique
+  userId String @db.ObjectId
+  expires DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token String @unique
+  expires DateTime
+
+  @@unique([identifier, token])
+}
+
+model Movie {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  videoUrl String
+  thumbnailUrl String // 缩略网址
+  genre String // 类型
+  duration String
+}
