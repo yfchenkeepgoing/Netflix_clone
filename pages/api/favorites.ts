@@ -11,7 +11,7 @@ export default async function handler(req:NextApiRequest, res: NextApiResponse) 
 
     // try and catch block
     try {
-        const { currentUser } = await serverAuth(req);
+        const { currentUser } = await serverAuth(req, res);
 
         // find all movies which have a relation to current user favorite IDs
         const  favoriteMovies  = await prismadb.movie.findMany({

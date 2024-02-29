@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // try and catch block
     try {
-        await serverAuth(req); // authenticate this route
+        await serverAuth(req, res); // authenticate this route
 
         // load all the movies
         const movies = await prismadb.movie.findMany();

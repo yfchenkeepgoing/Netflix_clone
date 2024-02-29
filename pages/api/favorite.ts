@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         // handle post request
         if (req.method === 'POST') {
-            const { currentUser } = await serverAuth(req); // get curent user
+            const { currentUser } = await serverAuth(req, res); // get curent user
 
             const { movieId } = req.body; // get movieId
 
@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // handle delete request when a user want to unfavorite a movie
         if (req.method === 'DELETE') {
-            const { currentUser } = await serverAuth(req);
+            const { currentUser } = await serverAuth(req, res);
 
             const { movieId } = req.body;
 

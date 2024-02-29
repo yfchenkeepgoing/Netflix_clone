@@ -1,11 +1,12 @@
-import { NextApiRequest } from 'next';
-import { getSession } from 'next-auth/react'; 
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession } from 'next-auth'; 
 
 import prismadb from '@/lib/prismadb';
+import { authOptions  } from '@/pages/api/auth/[...nextauth]';
 
-const serverAuth = async (req: NextApiRequest) => {
+const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
     // fetch log in user session
-    const session = await getSession({ req });
+    const session = await getServerSession(req, res, authOptions);
 
     // use serverAuth in api controller
     // req parameter  will hold jwt token to get logged in user
