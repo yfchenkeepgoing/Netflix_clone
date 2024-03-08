@@ -1,40 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Technology Stack
 
-## Getting Started
+- Frontend: React
+- Server-side Rendering: Next.js
+- Styling: Tailwind CSS
+- Data abstraction layer: Prisma
+- Storage: MongoDB
+- Authentication: NextAuth
+- Deploy: Vercel
+- Typescript
+- the entire website fully
 
-First, run the development server:
+The entire website fully responsive across all devices.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- credential login: username + password
+- profile: automatically generated once we register
+- homepage: loaded with a random movie-billboard
+- movies: load from database
+- favourites: add movies as favourites
+- botton:  shows more information about the movie
+- play the movie
+- Google and GitHub oauth login
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Final Outcome
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+This project has been deployed on Vercel, and the link is https://netflix-clone-des61jf1p-yifan-chens-projects-1cf68c6f.vercel.app/auth. Registration and login with a username and password, as well as login with GitHub authorization, work normally. However, Google OAuth cannot be used for unknown reasons.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+See the following link: https://yfchenkeepgoing.github.io/2024/02/22/Full-Stack-Netflix-Clone/
 
-## Learn More
+## Project Summary
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+See the following link: https://yfchenkeepgoing.github.io/2024/03/07/Summary-of-full-stack-netflix-clone/
